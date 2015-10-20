@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Inbox by Gmail Title Updater
-// @version     0.1.0
+// @version     0.1.1
 // @namespace   elesel/userscripts
 // @decription  Updates page title to tell the browser when a new/snoozed email or chat arrives
 // @include     https://inbox.google.com/*
@@ -32,38 +32,6 @@ function mutationHandler(mutationRecords) {
     window.setTimeout(updateTitle, 5000);
     timeoutWaiting = true;
   }
-  
-  /*
-  mutationRecords.forEach(function (mutation) {
-    if (mutation.type == 'childList') {
-      if (typeof mutation.addedNodes == 'object' && mutation.addedNodes.length) {
-        for (var J = 0, L = mutation.addedNodes.length; J < L; ++J) {
-          if (checkForClass(mutation.addedNodes[J], 'G3')) {
-            unreadAffected = true;
-          }
-          if (checkForText(mutation.addedNodes[J], 'Unread')) {
-            unreadAffected = true;
-          }
-        }
-      }
-      if (typeof mutation.removedNodes == 'object' && mutation.removedNodes.length) {
-        for (var J = 0, L = mutation.removedNodes.length; J < L; ++J) {
-          if (checkForClass(mutation.removedNodes[J], 'G3')) {
-            unreadAffected = true;
-          }
-          if (checkForText(mutation.removedNodes[J], 'Unread')) {
-            unreadAffected = true;
-          }
-        }
-      }
-    } else if (mutation.type == 'attributes') {
-      if (checkForText(mutation.target, 'Unread')) {
-        unreadAffected = true;
-      }
-    }
-  });
-  
-  */
 }
 
 function updateTitle() {
@@ -99,11 +67,7 @@ function updateTitle() {
 
   // Update title if changed
   var currentTitle = document.title;
-  /*
-  console.log('unreadCount =', unreadCount);
-  console.log('chatCount =', chatCount);
-  console.log('currentTitle =', currentTitle);
-  */
+  console.log('unreadCount =', unreadCount, ' chatCount =', chatCount, ' currentTitle =', currentTitle);
   if (currentTitle.match(/^Inbox/)) {
     var newTitle = currentTitle.replace(
       /^(Inbox)[^â€“]+/, '$1 ' + 
@@ -111,7 +75,7 @@ function updateTitle() {
       (chatCount ? '(' + chatCount + ' chat) ' : '')
     );
     if (newTitle != currentTitle) {
-      //console.log('newTitle =', newTitle);
+      console.log('newTitle =', newTitle);
       document.title = newTitle;
     }
   }
@@ -138,10 +102,3 @@ function checkForText(node, text) {
   }
   return false;
 }
-
-/*
-Unread: <div class="G3" jsan="7.G3" jstcache="1650"> Unread </div>
-Read: <div style="display:none" jstcache="1650"> Unread </div>
-Chat: <iframe id="gtn_pos8on" class="be lR" frameborder="0" style="visibility: visible; width: 262px; height: 420px;" src="https://talkgadget.google.com/u/0/talkgadget/_/frame?v=1444929423&hl=en&pvt=AMP3uWYspRTgk3_zPi8HIG6_PggROpB8mIapF7kdYLZCGG8uU5l5ldnRdxkbmJNv5jz0kd26aujBrvqkJfdItS691q5PE655CGFZ_FnDAmYtaL2_JvSVed4#egtn_pos8on" jstcache="3114" scrolling="no">
-  Use iframe + class + width: 262px
-*/
