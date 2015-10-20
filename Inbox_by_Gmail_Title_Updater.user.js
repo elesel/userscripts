@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name        Inbox by Gmail Title Updater
-// @version     0.1.3
+// @version     0.1.4
 // @namespace   elesel/userscripts
 // @decription  Updates page title to tell the browser when a new/snoozed email or chat arrives
 // @include     https://inbox.google.com/*
 // @license     MIT License; http://www.opensource.org/licenses/mit-license.php
-// @run-at      document-start
 // @grant       none
 // @icon        https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/ic_product_inbox_16dp_r2_2x.png
 // @updateURL   https://github.com/elesel/userscripts/raw/master/Inbox_by_Gmail_Title_Updater.user.js
