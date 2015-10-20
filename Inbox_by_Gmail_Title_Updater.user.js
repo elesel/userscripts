@@ -8,6 +8,8 @@
 // @run-at      document-start
 // @grant       none
 // @icon        https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/ic_product_inbox_16dp_r2_2x.png
+// @updateURL   https://github.com/elesel/userscripts/raw/master/Inbox_by_Gmail_Title_Updater.user.js
+// @downloadURL https://github.com/elesel/userscripts/raw/master/Inbox_by_Gmail_Title_Updater.user.js
 // ==/UserScript==
 
 var timeoutWaiting = false;
