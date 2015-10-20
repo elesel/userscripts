@@ -70,7 +70,7 @@ function updateTitle() {
   console.log('unreadCount =', unreadCount, ' chatCount =', chatCount, ' currentTitle =', currentTitle);
   if (currentTitle.match(/^Inbox/)) {
     var newTitle = currentTitle.replace(
-      /^(Inbox)[^â€“]+/, '$1 ' + 
+      /^(Inbox)[^–]+/, '$1 ' + 
       ((unreadCount || totalCount) ? '(' + unreadCount + '/' + totalCount + ') ' : '') + 
       (chatCount ? '(' + chatCount + ' chat) ' : '')
     );
