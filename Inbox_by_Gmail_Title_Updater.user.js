@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Inbox by Gmail Title Updater
-// @version     0.1.2
+// @version     0.1.3
 // @namespace   elesel/userscripts
 // @decription  Updates page title to tell the browser when a new/snoozed email or chat arrives
 // @include     https://inbox.google.com/*
@@ -11,6 +11,8 @@
 // @updateURL   https://github.com/elesel/userscripts/raw/master/Inbox_by_Gmail_Title_Updater.user.js
 // @downloadURL https://github.com/elesel/userscripts/raw/master/Inbox_by_Gmail_Title_Updater.user.js
 // ==/UserScript==
+
+"use strict";
 
 var timeoutWaiting = false;
 
@@ -38,8 +40,8 @@ function updateTitle() {
   // Get unread email count
   var elements = document.getElementsByClassName("G3");
   var unreadCount = 0;
-  for (var J = 0, L = elements.length; J < L; ++J) {
-    var element = elements[J];
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements[i];
     if (element.tagName === 'DIV' && checkForText(element, 'Unread')) {
       unreadCount++;
     }
@@ -48,8 +50,8 @@ function updateTitle() {
   // Get total email count
   var elements = document.getElementsByClassName("top-level-item");
   var totalCount = 0;
-  for (var J = 0, L = elements.length; J < L; ++J) {
-    var element = elements[J];
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements[i];
     if (element.tagName === 'DIV') {
       totalCount++;
     }
@@ -58,8 +60,8 @@ function updateTitle() {
   // Get chat count
   var elements = document.getElementsByClassName("ez");
   var chatCount = 0;
-  for (var J = 0, L = elements.length; J < L; ++J) {
-    var element = elements[J];
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements[i];
     if (element.tagName === 'DIV' && (! checkForClass(element, 'k6')) && element.clientWidth > 1) {
       chatCount++;
     }
@@ -84,21 +86,17 @@ function updateTitle() {
 }
 
 function checkForClass(node, className) {
-  if (node.nodeType === 1 && node.classList.contains(className)) {
-    console.log('New node with class "' + className + '" = ', node);
-    return true;
-  }
-  return false;
+  return (
+    node.nodeType === 1 && 
+    node.classList.contains(className)
+  );
 }
 
 function checkForText(node, text) {
-  if (node.nodeType === 1 && node.hasChildNodes()) {
-    var firstChild = node.firstChild;
-    if (firstChild.nodeType === 3) {
-      if (firstChild.nodeValue.indexOf(text) > -1) {
-        return true;
-      }
-    }
-  }
-  return false;
+  return (
+    node.nodeType === 1 && 
+    node.hasChildNodes() && 
+    node.firstChild.nodeType === 3 && 
+    node.firstChild.nodeValue.indexOf(text) > -1
+  );
 }
