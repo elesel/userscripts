@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Inbox by Gmail Title Updater
-// @version     0.1.1
+// @version     0.1.2
 // @namespace   elesel/userscripts
 // @decription  Updates page title to tell the browser when a new/snoozed email or chat arrives
 // @include     https://inbox.google.com/*
