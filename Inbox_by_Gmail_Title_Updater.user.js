@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Inbox by Gmail Title Updater
-// @version     0.1.4
+// @version     0.1.5
 // @namespace   elesel/userscripts
 // @decription  Updates page title to tell the browser when a new/snoozed email or chat arrives
 // @include     https://inbox.google.com/*
@@ -30,7 +30,7 @@ myObserver.observe(document, obsConfig);
 
 function mutationHandler(mutationRecords) {
   if (! timeoutWaiting) {
-    window.setTimeout(updateTitle, 5000);
+    window.setTimeout(updateTitle, 250);
     timeoutWaiting = true;
   }
 }
